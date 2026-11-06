@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.spring.hibernate_demo.entity.Student;
 
+/**
+ * Initializes abstract functions
+ */
 public interface StudentDao {
     void save(Student theStudent);
     Student findById(Integer id);

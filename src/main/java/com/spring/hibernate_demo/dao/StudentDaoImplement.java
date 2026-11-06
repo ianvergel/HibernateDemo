@@ -8,7 +8,9 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import com.spring.hibernate_demo.entity.Student;
 
-
+/**
+ * Concrete class that implements the functions initialized in StudentDao
+ */
 @Repository 
 public class StudentDaoImplement implements StudentDao {
 
@@ -31,14 +33,16 @@ public class StudentDaoImplement implements StudentDao {
 
     @Override 
     public List<Student> findAll() {
-        TypedQuery<Student> query = em.createQuery("FROM Student order by lastName", Student.class);
+        TypedQuery<Student> query = em.createQuery
+        ("FROM Student order by lastName", Student.class);
 
         return query.getResultList();
     }
 
     @Override 
     public List<Student> findByLastName(String lastname) {
-        TypedQuery<Student> query = em.createQuery("FROM Student WHERE lastName=:data", Student.class);
+        TypedQuery<Student> query = em.createQuery
+        ("FROM Student WHERE lastName=:data", Student.class);
 
         query.setParameter("data", lastname);
 

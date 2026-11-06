@@ -15,6 +15,9 @@ public class HibernateDemoApplication {
 		SpringApplication.run(HibernateDemoApplication.class, args);
 	}
 
+	/**
+	 * Calls the specific functions to be executed.
+	 */
 	@Bean 
 	CommandLineRunner commandLineRunner(StudentDao studentDao) {
 		return runner -> {
@@ -28,12 +31,19 @@ public class HibernateDemoApplication {
 		};
 	}
 
+	/**
+	 * Deletes all the students in the Student Table
+	 */
 	private void deleteAllStudent(StudentDao studentDao) {
 		System.out.println("Deleting all student information...");
 		int rowsDeleted = studentDao.deleteAll();
 		System.out.println("Number of deleted rows: " + rowsDeleted);
 	}
 
+	/**
+	 * Deletes all the a student in the Table that
+	 * is equal to the id initialized.
+	 */
 	private void deleteStudent(StudentDao studentDao) {
 		int id = 11;
 		System.out.println("Delete ID: " + id);
@@ -41,6 +51,9 @@ public class HibernateDemoApplication {
 		studentDao.delete(id);
 	}
 
+	/**
+	 * Updates specific record by querying with the specific id.
+	 */
 	private void updateStudent(StudentDao studentDao) {
 		int id = 9;
 
@@ -55,6 +68,9 @@ public class HibernateDemoApplication {
 		System.out.println("Updated student information: " + student);
 	}
 
+	/**
+	 * Fetches the student from the database by querying the lastname.
+	 */
 	private void queryStudentLastName(StudentDao studentDao) {
 		List<Student> students = studentDao.findByLastName("WizardKing");
 
@@ -63,6 +79,9 @@ public class HibernateDemoApplication {
 		}
 	}
 
+	/**
+	 * Return all the list of students in the database
+	 */
 	private void queryStudents(StudentDao studentDao) {
 		List<Student> students = studentDao.findAll();
 
@@ -71,6 +90,9 @@ public class HibernateDemoApplication {
 		}
 	}
 
+	/**
+	 * Finds specific students by referencing on the declared id.
+	 */
 	private void readStudent(StudentDao studentDao) {
 		System.out.println("Retrieving student id 2...");
 		Student student = studentDao.findById(2);
@@ -78,9 +100,14 @@ public class HibernateDemoApplication {
 		System.out.println("Found the Student: " + student);
 	}
 
+	/**
+	 * Creates a new student by saving the details with the new
+	 * Student Object onto the database.
+	 */
 	private void createStudent(StudentDao studentDao) {
 		System.out.println("Creating student information...");
-		Student student = new Student("Magna", "Swing", "magna@cloverkingdom.com");
+		Student student = new Student("Magna", "Swing",
+		"magna@cloverkingdom.com");
 
 		System.out.println("Saving student information...");
 		studentDao.save(student);
