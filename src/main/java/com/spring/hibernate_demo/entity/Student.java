@@ -35,6 +35,10 @@ public class Student {
 
     @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
     
     //default constructor as required by JPA
     public Student() {
@@ -98,7 +102,7 @@ public class Student {
     }
 
     public void addCourse(Course course) {
-        if(course == null) {
+        if(courses == null) {
             courses = new ArrayList<>();
         }
         courses.add(course);

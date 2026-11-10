@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.spring.hibernate_demo.entity.Instructor;
 import com.spring.hibernate_demo.entity.InstructorDetail;
+import com.spring.hibernate_demo.entity.Student;
 import com.spring.hibernate_demo.entity.Course;
 
 public interface AppDao {
@@ -20,4 +21,7 @@ public interface AppDao {
     Course findCourseAndReviewsByCourseId(int theId);
     void deleteCourseById(int theId);
     Course findCourseAndStudentByCourseId(int theId);
+    Student findStudentAndCoursesByStudentId(int theId);
+    void update(Student student);
+    void deleteStudentById(int theId);
 }
