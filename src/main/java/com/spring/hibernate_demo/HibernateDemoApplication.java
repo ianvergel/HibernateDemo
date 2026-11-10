@@ -27,7 +27,7 @@ public class HibernateDemoApplication {
 	@Bean 
 	CommandLineRunner commandLineRunner(StudentDao studentDao, AppDao app) {
 		return runner -> {
-			// createStudent(studentDao);
+			createStudent(studentDao);
 			// readStudent(studentDao);
 			// queryStudents(studentDao);
 			// queryStudentLastName(studentDao);
@@ -35,7 +35,7 @@ public class HibernateDemoApplication {
 			// deleteStudent(studentDao);
 			// deleteAllStudent(studentDao);
 
-			// createInstructor(app);
+			createInstructor(app);
 			// findInstructorById(app);
 			// deleteInstructorId(app);
 			// findInstructorDetailById(app);
