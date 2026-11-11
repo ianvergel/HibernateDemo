@@ -1,9 +1,6 @@
 package com.spring.hibernate_demo.entity;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.aspectj.asm.internal.Relationship;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
