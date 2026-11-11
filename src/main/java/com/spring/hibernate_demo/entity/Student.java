@@ -1,14 +1,19 @@
 package com.spring.hibernate_demo.entity;
-
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
- * Initializes the creation of the Student Table
+ * Initializes an student table to be created in the DB with
+ * its columns and relationships specified.
  */
 @Entity 
 @Table(name="student")
@@ -27,6 +32,22 @@ public class Student {
 
     @Column(name="email")
     private String email;
+
+    /**
+    * Relationship of student table to Course Table WITHOUT Cascading Delete.
+    */
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY,
+    cascade = {CascadeType.DETACH, 
+                CascadeType.MERGE, 
+                CascadeType.PERSIST, 
+                CascadeType.REFRESH})
+
+    private List<Course> courses;
+    
+    //getter for Courses
+    public List<Course> getCourses() {
+        return courses;
+    }
     
     //default constructor as required by JPA
     public Student() {
@@ -89,4 +110,12 @@ public class Student {
                 ", email=" + email + "]";
     }
 
+    //convenience function to add courses
+    public void addCourse(Course course) {
+        if(courses == null) {
+            courses = new ArrayList<>();
+        }
+        courses.add(course);
+        course.addStudent(this);
+    }
 }

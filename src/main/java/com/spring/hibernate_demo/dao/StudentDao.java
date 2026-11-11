@@ -1,11 +1,9 @@
 package com.spring.hibernate_demo.dao;
-
 import java.util.List;
-
 import com.spring.hibernate_demo.entity.Student;
 
 /**
- * Initializes abstract functions
+ * Initializes abstract functions to be implements in StudentDaoImplement.java
  */
 public interface StudentDao {
     void save(Student theStudent);
